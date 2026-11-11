@@ -1,0 +1,351 @@
+/* ==========================================================================
+   PAGE HERO (inner pages)
+   ========================================================================== */
+.page-hero{
+  padding:9.5rem 0 var(--s-5);
+  position:relative;
+  background:radial-gradient(ellipse 70% 50% at 20% 0%, rgba(43,79,217,0.25), transparent 60%);
+}
+.page-hero h1{font-size:clamp(2.6rem,6.4vw,4.6rem);max-width:820px;}
+.page-hero p{color:var(--silver);max-width:520px;margin-top:var(--s-2);font-size:1.02rem;}
+
+/* ==========================================================================
+   THE BAND — vertical timeline
+   ========================================================================== */
+.timeline{position:relative;margin-top:var(--s-3);padding-left:2.2rem;}
+.timeline::before{
+  content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(var(--line),var(--line));
+}
+.timeline::after{
+  content:"";position:absolute;left:5px;top:6px;width:1px;height:var(--tl-progress,0%);
+  background:linear-gradient(var(--cyan),var(--royal));
+  transition:height .2s linear;
+}
+.timeline-item{position:relative;padding-bottom:var(--s-5);}
+.timeline-item:last-child{padding-bottom:0;}
+.timeline-dot{
+  position:absolute;left:-2.2rem;top:4px;width:11px;height:11px;border-radius:50%;
+  background:var(--navy);border:1px solid var(--silver-dim);
+  transition:all .5s var(--ease);
+}
+.timeline-item.in .timeline-dot{background:var(--cyan);border-color:var(--cyan);box-shadow:0 0 14px rgba(143,246,228,0.6);}
+.timeline-year{font-family:var(--f-mono);color:var(--cyan);font-size:0.82rem;letter-spacing:0.08em;margin-bottom:0.5rem;display:block;}
+.timeline-item h3{font-size:1.5rem;margin-bottom:0.6rem;}
+.timeline-item p{color:var(--silver);max-width:600px;}
+
+/* member cards */
+.member-card{cursor:default;}
+.member-card .role{font-family:var(--f-mono);font-size:0.72rem;color:var(--cyan);letter-spacing:0.08em;text-transform:uppercase;margin-top:var(--s-2);}
+.member-card h3{font-size:1.4rem;margin-top:0.35rem;}
+.member-card p.bio{color:var(--silver);font-size:0.9rem;margin-top:0.6rem;}
+
+/* ==========================================================================
+   MUSIC — album shelf
+   ========================================================================== */
+.shelf{
+  display:flex;gap:var(--s-3);
+  overflow-x:auto;
+  padding:1rem 0.25rem 2rem 0;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:thin;
+}
+.shelf::after{content:"";flex:0 0 0.25rem;}
+.shelf::-webkit-scrollbar{height:6px;}
+.album{
+  scroll-snap-align:start;
+  flex:0 0 260px;
+  position:relative;
+}
+.album-art{
+  aspect-ratio:1/1;
+  border-radius:var(--radius-sm);
+  background:linear-gradient(155deg,var(--royal),var(--midnight) 75%);
+  position:relative;overflow:hidden;
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.album-art::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 75% 80%, rgba(143,246,228,0.3), transparent 55%);mix-blend-mode:screen;}
+.album:hover .album-art{transform:translateY(-8px) rotate(-1deg);box-shadow:0 30px 50px -20px rgba(0,0,0,0.6);}
+.album-art .ring{
+  position:absolute;width:34%;height:34%;border-radius:50%;
+  border:1px solid rgba(237,241,250,0.35);
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.album-art .ring::before{content:"";position:absolute;inset:38%;border-radius:50%;background:var(--midnight);}
+.album-meta{margin-top:1rem;}
+.album-meta .yr{font-family:var(--f-mono);color:var(--silver-dim);font-size:0.72rem;}
+.album-meta h3{font-size:1.15rem;margin-top:0.3rem;}
+
+.track-row{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem 0;
+  border-bottom:1px solid var(--line);
+  transition:padding-left .35s var(--ease);
+}
+.track-row:hover{padding-left:0.5rem;}
+.track-row .num{font-family:var(--f-mono);color:var(--silver-dim);font-size:0.82rem;width:1.6rem;}
+.track-row .title{flex:1;font-size:0.98rem;}
+.track-row .len{font-family:var(--f-mono);color:var(--silver-dim);font-size:0.8rem;}
+.track-play{
+  width:34px;height:34px;border-radius:50%;border:1px solid var(--silver-dim);
+  display:flex;align-items:center;justify-content:center;color:var(--silver);
+  transition:all .35s var(--ease);flex-shrink:0;
+}
+.track-row:hover .track-play{border-color:var(--cyan);color:var(--cyan);transform:scale(1.08);}
+
+.stream-row{display:flex;gap:1rem;flex-wrap:wrap;margin-top:var(--s-3);}
+.stream-btn{
+  display:flex;align-items:center;gap:0.6rem;
+  padding:0.8rem 1.3rem;border:1px solid var(--line);border-radius:99px;
+  font-size:0.85rem;color:var(--silver);transition:all .35s var(--ease);
+}
+.stream-btn:hover{border-color:var(--cyan);color:var(--paper);transform:translateY(-3px);background:rgba(143,246,228,0.05);}
+
+/* ==========================================================================
+   TOUR — ticket-style cards
+   ========================================================================== */
+.tour-list{display:flex;flex-direction:column;gap:1rem;}
+.tour-card{
+  display:flex;align-items:center;gap:var(--s-3);
+  background:linear-gradient(180deg,var(--navy-soft),var(--navy));
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:var(--s-3);
+  position:relative;
+  transition:transform .45s var(--ease), border-color .45s ease, box-shadow .45s ease;
+}
+.tour-card:hover{transform:translateX(6px);border-color:rgba(143,246,228,0.3);box-shadow:0 20px 40px -22px rgba(43,79,217,0.5);}
+.tour-date{
+  font-family:var(--f-mono);text-align:center;flex-shrink:0;width:70px;
+  border-right:1px dashed var(--line);padding-right:var(--s-3);
+  margin-right:var(--s-1);
+}
+.tour-date .d{font-size:1.9rem;color:var(--cyan);line-height:1;}
+.tour-date .m{font-size:0.72rem;color:var(--silver-dim);letter-spacing:0.1em;margin-top:0.3rem;display:block;}
+.tour-info{flex:1;min-width:0;}
+.tour-info h3{font-size:1.2rem;}
+.tour-info .venue{color:var(--silver);font-size:0.88rem;margin-top:0.3rem;}
+.tour-status{
+  font-family:var(--f-mono);font-size:0.7rem;letter-spacing:0.06em;
+  padding:0.35rem 0.8rem;border-radius:99px;flex-shrink:0;
+  border:1px solid var(--silver-dim);color:var(--silver);
+}
+.tour-status.limited{border-color:var(--cyan);color:var(--cyan);}
+.tour-status.soldout{border-color:var(--silver-dim);color:var(--silver-dim);}
+.tour-buy{flex-shrink:0;}
+
+/* FAQ accordion */
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.4rem 0;font-size:1.02rem;color:var(--paper);
+}
+.faq-q .plus{transition:transform .4s var(--ease);color:var(--cyan);font-size:1.2rem;}
+.faq-item.open .faq-q .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .5s var(--ease);}
+.faq-a p{padding-bottom:1.4rem;color:var(--silver);font-size:0.92rem;max-width:640px;}
+
+/* ==========================================================================
+   SHOP
+   ========================================================================== */
+.product-card{position:relative;}
+.product-media{
+  aspect-ratio:1/1.1;border-radius:var(--radius-sm);overflow:hidden;position:relative;
+  background:linear-gradient(160deg,var(--navy-soft),var(--midnight));
+}
+.product-media .tag{
+  position:absolute;top:0.9rem;left:0.9rem;
+  font-family:var(--f-mono);font-size:0.65rem;letter-spacing:0.06em;
+  background:rgba(6,11,26,0.7);border:1px solid var(--line);
+  padding:0.3rem 0.7rem;border-radius:99px;color:var(--cyan);
+}
+.product-glyph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .6s var(--ease);}
+.product-card:hover .product-glyph{transform:scale(1.06) rotate(-2deg);}
+.product-info{margin-top:1rem;display:flex;justify-content:space-between;align-items:flex-start;gap:0.5rem;flex-wrap:wrap;}
+.product-info h3{font-size:1.02rem;}
+.product-info .price{font-family:var(--f-mono);color:var(--cyan);font-size:0.92rem;white-space:nowrap;}
+.product-info .variant{color:var(--silver-dim);font-size:0.8rem;margin-top:0.25rem;}
+.add-btn{
+  margin-top:0.9rem;width:100%;padding:0.75rem;border-radius:var(--radius-sm);
+  border:1px solid var(--silver-dim);color:var(--paper);font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;gap:0.5rem;
+  transition:all .35s var(--ease);position:relative;overflow:hidden;
+}
+.add-btn:hover{border-color:var(--cyan);color:var(--cyan);}
+.add-btn.added{background:var(--cyan);border-color:var(--cyan);color:var(--midnight);}
+.add-btn .check{display:none;}
+.add-btn.added .label{display:none;}
+.add-btn.added .check{display:inline;}
+
+.cart-fab{
+  position:fixed;bottom:1.8rem;left:1.8rem;z-index:900;
+  display:flex;align-items:center;gap:0.6rem;
+  background:var(--navy-soft);border:1px solid var(--line);
+  padding:0.85rem 1.2rem;border-radius:99px;
+  font-family:var(--f-mono);font-size:0.8rem;color:var(--paper);
+  transition:transform .4s var(--ease), border-color .4s ease;
+}
+.cart-fab:hover{border-color:var(--cyan);}
+.cart-fab .count{
+  background:var(--cyan);color:var(--midnight);
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:600;
+  transition:transform .3s var(--ease);
+}
+.cart-fab.bump .count{animation:bump .4s var(--ease);}
+@keyframes bump{0%{transform:scale(1);}40%{transform:scale(1.5);}100%{transform:scale(1);}}
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+.contact-wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--s-4);align-items:start;}
+.glass-form{
+  background:rgba(15,26,60,0.45);
+  border:1px solid rgba(143,246,228,0.12);
+  backdrop-filter:blur(18px) saturate(140%);
+  -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-radius:var(--radius);
+  padding:var(--s-4);
+}
+.contact-info-item{display:flex;gap:1rem;padding:1.1rem 0;border-bottom:1px solid var(--line);}
+.contact-info-item .ic{color:var(--cyan);flex-shrink:0;margin-top:0.15rem;}
+.contact-info-item h4{font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--silver-dim);font-family:var(--f-mono);font-weight:400;margin-bottom:0.3rem;}
+.contact-info-item p{color:var(--paper);font-size:0.95rem;}
+.map-frame{
+  border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);margin-top:var(--s-3);
+  aspect-ratio:16/10;position:relative;
+}
+.map-frame iframe{width:100%;height:100%;border:0;filter:grayscale(1) invert(0.92) contrast(0.9);}
+.map-frame::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 60px 10px rgba(6,11,26,0.6);pointer-events:none;}
+
+@media (max-width:900px){
+  .contact-wrap{grid-template-columns:1fr;}
+  .tour-card{flex-wrap:wrap;}
+  .tour-card::after{display:none;}
+  .tour-buy{width:100%;}
+  .tour-buy .btn{width:100%;justify-content:center;}
+}
+
+.member-photo{
+    width:100%;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:14px;
+    display:block;
+    margin-bottom:1rem;
+    border:1px solid rgba(255,255,255,.08);
+    transition:.35s;
+}
+
+.member-card:hover .member-photo{
+    transform:scale(1.03);
+}
+
+.album-art img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:inherit;
+}
+
+.about-photo{
+    width:100%;
+    border-radius:16px;
+    object-fit:cover;
+    display:block;
+}
+
+.album-art img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:inherit;
+}
+
+.product-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    border-radius:inherit;
+    transition:transform .35s ease;
+}
+
+.product-card:hover .product-img{
+    transform:scale(1.05);
+}
+
+/* ===== Tambahan untuk koneksi database ===== */
+.member-social{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem;}
+.member-social a{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--silver);border:1px solid rgba(255,255,255,.15);padding:.25rem .6rem;border-radius:999px;transition:color .3s,border-color .3s;}
+.member-social a:hover{color:var(--cyan);border-color:var(--cyan);}
+.form-error{display:none;color:#ff9a9a;font-size:.85rem;margin-bottom:1rem;font-family:var(--f-mono);}
+.ticket-codes{font-family:var(--f-mono);letter-spacing:.12em;color:var(--cyan);font-size:1rem;line-height:1.9;}
+.cart-fab{cursor:pointer;}
+.add-btn:disabled{opacity:.5;cursor:not-allowed;}
+.cart-list{margin-top:1rem;max-height:40vh;overflow-y:auto;}
+.cart-row{display:grid;grid-template-columns:1fr auto auto;gap:1rem;align-items:center;padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,.08);font-size:.9rem;}
+.cart-qty{display:flex;align-items:center;gap:.5rem;}
+.cart-qty button{width:26px;height:26px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:none;color:inherit;cursor:pointer;}
+.cart-sub{min-width:80px;text-align:right;color:var(--silver);}
+.cart-total{display:flex;justify-content:space-between;padding-top:1rem;font-size:1rem;}
+.modal{max-height:90vh;overflow-y:auto;}
+
+/* ===== Album klik -> popup daftar lagu ===== */
+.album-clickable{cursor:pointer;outline:none;}
+.album-clickable:focus-visible .album-art{box-shadow:0 0 0 2px var(--cyan);}
+.album-clickable:hover .album-meta h3,
+.album-clickable:focus-visible .album-meta h3{color:var(--cyan);}
+.album-meta h3{transition:color .3s ease;}
+.album-art-hint{
+  position:absolute;left:50%;bottom:.9rem;z-index:2;
+  display:inline-flex;align-items:center;gap:.45rem;
+  padding:.5rem .9rem;border-radius:99px;
+  background:rgba(6,11,26,.78);backdrop-filter:blur(6px);
+  border:1px solid var(--line);color:var(--paper);
+  font-family:var(--f-mono);font-size:.7rem;letter-spacing:.06em;white-space:nowrap;
+  transform:translate(-50%,10px);opacity:0;
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+}
+.album-clickable:hover .album-art-hint,
+.album-clickable:focus-visible .album-art-hint{opacity:1;transform:translate(-50%,0);}
+@media (hover:none){.album-art-hint{opacity:1;transform:translate(-50%,0);}}
+
+/* Panel daftar lagu (terbuka di bawah rak album) */
+.album-clickable.active .album-art{box-shadow:0 0 0 2px var(--cyan);transform:translateY(-8px);}
+.album-clickable.active .album-meta h3{color:var(--cyan);}
+.album-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease);}
+.album-panel.open{grid-template-rows:1fr;}
+.album-panel-inner{overflow:hidden;min-height:0;}
+.album-panel-body{
+  position:relative;margin-top:var(--s-2);
+  display:grid;grid-template-columns:280px 1fr;gap:var(--s-4);align-items:start;
+  text-align:left;padding:var(--s-4);
+  background:linear-gradient(180deg,var(--navy-soft),var(--navy));
+  border:1px solid var(--line);border-radius:var(--radius);
+  opacity:0;transform:translateY(-10px);
+  transition:opacity .45s var(--ease) .1s, transform .45s var(--ease) .1s;
+}
+.album-panel.open .album-panel-body{opacity:1;transform:none;}
+.album-panel-close{position:absolute;top:.9rem;right:1.1rem;background:none;border:none;color:var(--silver);font-size:1.4rem;cursor:pointer;transition:color .3s ease, transform .3s ease;}
+.album-panel-close:hover{color:var(--cyan);transform:rotate(90deg);}
+.album-panel-info .album-art{width:100%;max-width:280px;box-shadow:0 20px 40px -18px rgba(0,0,0,.7);}
+.album-panel-info h3{font-size:1.5rem;line-height:1.2;margin:.5rem 0 0;}
+.album-modal-count{font-family:var(--f-mono);font-size:.75rem;color:var(--silver-dim);margin:.6rem 0 0;}
+.album-modal-desc{color:var(--silver);font-size:.92rem;line-height:1.6;margin:var(--s-2) 0 0;}
+.album-panel .stream-row{margin-top:var(--s-3);gap:.6rem;}
+.album-panel .stream-btn{padding:.6rem 1rem;font-size:.8rem;}
+.album-panel-tracks{align-self:start;margin-top:0;padding-right:.75rem;max-height:480px;overflow-y:auto;}
+.album-panel-tracks::-webkit-scrollbar{width:6px;}
+.album-panel-tracks::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px;}
+.album-panel{scroll-margin-top:90px;}
+.track-row.compact{padding:.7rem 0;}
+.track-row.compact .title{font-size:.95rem;}
+.track-row.compact .num{flex-shrink:0;}
+@media (max-width:900px){
+  .album-panel-body{grid-template-columns:1fr;padding:var(--s-3);gap:var(--s-3);}
+  .album-panel-info .album-art{max-width:220px;margin:0 auto;}
+  .album-panel-tracks{max-height:none;padding-right:0;border-top:1px solid var(--line);}
+}
